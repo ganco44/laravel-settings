@@ -66,6 +66,60 @@ class Settings
             return $default;
     }
 
+    public function get2($key, $default = null)
+    {
+        $key = explode('.', $key);
+        $count = count($key);
+        
+        if($count == 1){
+            $value = $this->fetch($key[0]);
+            if(!is_null($value)){
+                return $value;
+            }else{
+                return $default;
+            }
+        }
+
+        elseif($count == 2){
+            $value = $this->fetch($key[0]);
+            if(!is_null($value)){
+                if(isset( $value[$key[0]][$key[1]] )){
+                    return $value[$key[0]][$key[1]];
+                }else{
+                    return $default;
+                }
+            }else{
+                return $default;
+            }
+        }
+
+        elseif($count == 3){
+            $value = $this->fetch($key[0]);
+            if(!is_null($value)){
+                if(isset( $value[$key[0]][$key[1]][$key[2]] )){
+                    return $value[$key[0]][$key[1]][$key[2]];
+                }else{
+                    return $default;
+                }
+            }else{
+                return $default;
+            }
+        }
+
+        elseif($count == 4){
+            $value = $this->fetch($key[0]);
+            if(!is_null($value)){
+                if(isset( $value[$key[0]][$key[1]][$key[2]][$key[3]] )){
+                    return $value[$key[0]][$key[1]][$key[2]][$key[3]];
+                }else{
+                    return $default;
+                }
+            }else{
+                return $default;
+            }
+        }
+    }
+    
     /**
      * @param $key
      *
